@@ -1,0 +1,274 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/RoughPolymer.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.0043749629321677514 0.003250399197659225 0.9999851471918961 4.41953210623814
+  position 1.7049972774122628 3.0204816395606464 -0.341081170167967
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+}
+Robot {
+  translation 0.9788883797550576 0.1385187244837135 0.048280001794248156
+  rotation 0.0024079157215168585 0.08513785027487629 -0.9963662722073899 0.056678350709174465
+  children [
+    DEF Leg1_joint HingeJoint {
+      jointParameters HingeJointParameters {
+      }
+      device [
+        DEF front_left RotationalMotor {
+        }
+      ]
+      endPoint Solid {
+        children [
+          Solid {
+            translation -0.06 0 -0.1
+            rotation 0 -1 0 -0.52
+            children [
+              DEF cylinder1 Shape {
+                appearance PBRAppearance {
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.25
+                  radius 0.03
+                }
+              }
+            ]
+          }
+          DEF sphyere1 Solid {
+            translation -0.14 0 -0.24
+            children [
+              Solid {
+                translation 0.08 0 -0.3
+                children [
+                  DEF sphere2 Shape {
+                    appearance PBRAppearance {
+                      metalness 0
+                    }
+                    geometry Sphere {
+                      radius 0.05
+                    }
+                  }
+                ]
+                name "solid(1)"
+              }
+              Solid {
+                translation 0.0386371 0 -0.149648
+                rotation 0 1 0 -0.261795307179586
+                children [
+                  DEF cylinder2 Shape {
+                    appearance PBRAppearance {
+                      metalness 0
+                    }
+                    geometry Cylinder {
+                      height 0.25
+                      radius 0.03
+                    }
+                  }
+                ]
+              }
+              Shape {
+                appearance PBRAppearance {
+                  metalness 0
+                }
+                geometry Sphere {
+                  radius 0.06
+                }
+              }
+            ]
+            name "solid(1)"
+          }
+          DEF leg1 Shape {
+            appearance PBRAppearance {
+              metalness 0
+            }
+            geometry Sphere {
+              radius 0.06
+            }
+          }
+        ]
+        name "solid(1)"
+      }
+    }
+    DEF torso_front Shape {
+      appearance RoughPolymer {
+        baseColor 0 0 0
+      }
+      geometry Box {
+        size 0.4 0.4 0.1
+      }
+    }
+    Solid {
+      translation 0.28 0 0.23
+      children [
+        Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.2 0.2 0.2
+          }
+        }
+        Solid {
+          translation 0.11 -0.06 0.04
+          rotation 0 1 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 0
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.05
+                radius 0.02
+              }
+            }
+          ]
+          name "eye_right"
+        }
+        Solid {
+          translation 0.11 0.04 0.04
+          rotation 0 1 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 0
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.05
+                radius 0.02
+              }
+            }
+            LightSensor {
+              name "lightSensor1"
+            }
+          ]
+          name "eye_left"
+        }
+      ]
+      name "head"
+    }
+    Solid {
+      translation 0.26044 0 0.0624781
+      rotation 0 1 0 2.87979
+      children [
+        DEF sphere1 Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.05
+          }
+        }
+        Solid {
+          translation -0.0445145 0 -0.0791461
+          rotation 0 -1 0 -0.523595307179586
+          children [
+            DEF cyl3 Shape {
+              appearance PBRAppearance {
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.15
+                radius 0.03
+              }
+            }
+          ]
+          boundingObject USE cyl3
+          physics DEF phy1 Physics {
+            mass 1
+          }
+        }
+        Solid {
+          translation 0.0534268 0 0.0197829
+          rotation 0 1 0 1.30899
+          children [
+            DEF cyl3 Shape {
+              appearance PBRAppearance {
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.15
+                radius 0.03
+              }
+            }
+          ]
+          name "solid(1)"
+          boundingObject USE cyl3
+          physics DEF phy1 Physics {
+            mass 1
+          }
+        }
+      ]
+      name "neck"
+      boundingObject USE sphere1
+      physics USE phy1
+    }
+    DEF body_joint HingeJoint {
+      jointParameters HingeJointParameters {
+        position 1.862433720882821e-10
+      }
+      device [
+        RotationalMotor {
+          name "torso_joint"
+        }
+      ]
+      endPoint Solid {
+        translation -0.24999999999999983 0 0
+        rotation 1 0 0 0
+        children [
+          DEF torso_joint_shape Shape {
+            appearance PBRAppearance {
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.07
+            }
+          }
+          Solid {
+            translation -0.16 0 0
+            children [
+              DEF torso_back Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 0
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.2 0.4 0.1
+                }
+              }
+            ]
+            boundingObject USE torso_back
+            physics Physics {
+              mass 1
+            }
+          }
+        ]
+        boundingObject USE torso_joint_shape
+        physics Physics {
+          mass 1
+        }
+        linearVelocity -7.41006195696456e-16 1.114506124675092e-16 -1.1366192986114032e-16
+        angularVelocity -2.1983519620477077e-15 -4.4134678292551e-15 1.2894946102953069e-17
+      }
+    }
+  ]
+  boundingObject USE torso_front
+  physics USE phy1
+  controller ""
+  linearVelocity 8.386112812195561e-16 1.1715039390498962e-16 -2.274011891657014e-16
+  angularVelocity -5.49475313467944e-16 2.075537321476889e-16 1.4604794107814912e-17
+}
